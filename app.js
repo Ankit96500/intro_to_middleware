@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import { join } from 'path';
 
-import {join} from 'path'
 const app = express();
 const PORT = process.env.PORT || 8000
 
@@ -9,20 +9,20 @@ const PORT = process.env.PORT || 8000
 app.use(bodyParser.urlencoded({extended:false}))
 
 
-app.get('/add-product',(req,res)=>{
-    res.sendFile(join(process.cwd(),'product.html'))
-})
+// load routes:
+import admin_routes from "./routes/admin.js"
+import shop_routes from "./routes/shop.js"
 
-// invoke when get post request
-app.post('/product',(req,res)=>{
-    console.log(req.body);
-    res.redirect('/')
-})
+//filter path
+app.use('/admin',admin_routes)
+app.use(shop_routes)
 
-// render the home page
-app.get('/',(req,res)=>{
-    res.sendFile(join(process.cwd(),'homepg.html'))
-})
+// unknow HTTP Request -if not any request found
+
+app.use('*',(req,res) => {
+    res.status(404).sendFile(join(process.cwd(),'error.html'))
+});
+
 
 // server listen 
 app.listen(PORT,()=>{
