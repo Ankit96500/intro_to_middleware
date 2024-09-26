@@ -7,7 +7,7 @@ const route = e.Router();
 
 // admin/add-product =>{get request}
 route.get('/add-product',(req,res)=>{
-    res.sendFile(join(process.cwd(),'product.html'))
+    res.sendFile(join(process.cwd(),'views','product.html'))
 })
 
 // invoke when get post request
