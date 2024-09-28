@@ -17,12 +17,17 @@ app.use(bodyParser.urlencoded({extended:false}))
 import admin_routes from "./routes/admin.js"
 import shop_routes from "./routes/shop.js"
 import contact_routes from "./routes/contact.js"
+import success_routes from "./routes/success.js"
 
+
+//setup directory for templates
+app.set('views','./views')
 
 //filter path
 app.use('/admin',admin_routes)
 app.use(shop_routes)
 app.use(contact_routes)
+app.use(success_routes)
 
 
 // unknow HTTP Request -if not any request found
