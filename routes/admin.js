@@ -1,5 +1,6 @@
 import e from "express";
 import { join } from "path";
+import { cont_admin } from "../controllers/admin_controller.js";
 const route = e.Router();
 
 
@@ -11,10 +12,7 @@ route.get('/add-product',(req,res)=>{
 })
 
 // invoke when get post request
-route.post('/product',(req,res)=>{
-    console.log(req.body);
-    res.redirect('/')
-})
+route.post('/product',cont_admin)
 
 
 
